@@ -19,6 +19,15 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
 
     /**
+     * Relationships
+     *
+     */
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
