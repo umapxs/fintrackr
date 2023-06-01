@@ -35,4 +35,9 @@ Route::middleware([
      *
      *  */
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts.index');
+
+    Route::post('/accounts/create', [AccountsController::class, 'create'])->name('accounts.create');
+
+    Route::delete('/accounts/{account}', [AccountsController::class, 'destroy'])->name('accounts.destroy');
+
 });
