@@ -10,15 +10,6 @@ class Categories extends Model
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'title',
-    ];
-
-    /**
      * Relationships
      *
      */
@@ -26,4 +17,13 @@ class Categories extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+    ];
 }

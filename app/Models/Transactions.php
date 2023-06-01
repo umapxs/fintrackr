@@ -9,6 +9,26 @@ class Transactions extends Model
 {
     use HasFactory;
 
+
+    /**
+     * Relationships
+     *
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,18 +41,4 @@ class Transactions extends Model
         'title',
         'amount',
     ];
-
-    /**
-     * Relationships
-     *
-     */
-    public function account()
-    {
-        return $this->belongsTo(Account::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 }

@@ -10,16 +10,6 @@ class Accounts extends Model
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-    ];
-
-
-    /**
      * Relationships
      *
      */
@@ -32,4 +22,13 @@ class Accounts extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+    ];
 }
