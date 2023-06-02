@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,5 +52,24 @@ Route::middleware([
 
     // Delete
     Route::delete('/accounts/{account}', [AccountsController::class, 'destroy'])->name('accounts.destroy');
+
+    /**
+     * Transactions
+     *
+     */
+
+    // Index
+    Route::get('/accounts/{id}/transactions', [TransactionsController::class, 'index'])->name('transactions.index');
+
+    /**
+     * Category
+     *
+     */
+
+    // Index
+    Route::get('/category', [CategoriesController::class, 'index'])->name('categories.index');
+
+    // Delete
+    Route::delete('/category/{category}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
 
 });

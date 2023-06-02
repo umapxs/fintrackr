@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AccountsController extends Controller
 {
+    /**
+     * Index
+     *
+     */
     public function index()
     {
         // Get the current user
@@ -18,6 +22,10 @@ class AccountsController extends Controller
         return view('accounts.index', compact('accounts'));
     }
 
+    /**
+     * Create
+     *
+     */
     public function create(Request $request)
     {
         // Validate input_text form field and set a max length
@@ -39,6 +47,10 @@ class AccountsController extends Controller
         return redirect()->route('accounts.index')->with('success', 'Account created successfully!');
     }
 
+    /**
+     * Edit
+     *
+     */
     public function edit($id)
     {
         // Find the account based on the provided ID
@@ -47,6 +59,10 @@ class AccountsController extends Controller
         return view('accounts.edit', compact('account'));
     }
 
+    /**
+     * Update
+     *
+     */
     public function update(Request $request, $id)
     {
         // Validate the input
@@ -64,6 +80,10 @@ class AccountsController extends Controller
         return redirect()->route('accounts.show', $account->id)->with('success', 'Account name updated successfully!');
     }
 
+    /**
+     * Destroy
+     *
+     */
     public function destroy(Account $account)
     {
         $account->delete();
@@ -71,6 +91,10 @@ class AccountsController extends Controller
         return redirect()->route('accounts.index')->with('success', 'Account deleted successfully!');
     }
 
+    /**
+     * Show
+     *
+     */
     public function show($id)
     {
         // Find the account based on the provided ID
