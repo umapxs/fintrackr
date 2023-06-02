@@ -7,12 +7,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex items-center mb-4">
-                <a href="{{ route('accounts.show', ['id' => $account->id]) }}" style="margin-right: 1.5rem">
-                    Return
-                </a>
-            </div>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    <a href="{{ url()->previous() }}" style="margin-right: 1.5rem; margin-left: 1rem">
+                        Return
+                    </a>
+                </div>
+
                 <div class="bg-gray-200 bg-opacity-25 p-6 lg:p-8">
                     <div>
                         <div class="flex items-center mb-4">
@@ -33,7 +34,7 @@
                                                         Account Name
                                                     </label>
                                                     <div class="mt-6 relative">
-                                                        <textarea name="account_name" value="{{ $account->title }}" class="p-6 w-full border-gray-200 text-md focus:outline-none focus:ring-black shadow-sm mt-1 block" id="input_text" rows="4" maxlength="50" placeholder="Do you want to change your Banking Account name?"></textarea>
+                                                        <textarea name="account_name" class="p-6 w-full border-gray-200 text-md focus:outline-none focus:ring-black shadow-sm mt-1 block" id="input_text" rows="4" maxlength="50" placeholder="Do you want to change your Banking Account name?">{{ $account->title }}</textarea>
                                                             <p id="char_count" class="text-sm text-black mt-2 bottom-0 left-0" style="color: black;">0/50 Characters</p>
                                                     </div>
                                                 </div>

@@ -7,16 +7,25 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex items-center mb-4">
-                <a href="/transaction" style="margin-right: 1.5rem">
-                    Add Transaction
-                </a>
-
-                <a href="{{ route('accounts.edit', ['id' => $account->id]) }}">
-                    Edit Account
-                </a>
-            </div>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    <a href="{{ route('accounts.index') }}" style="margin-right: 1.5rem; margin-left: 1rem">
+                        Return
+                    </a>
+
+                    <a href="{{ route('transactions.index', ['id' => $account->id]) }}" style="margin-right: 1.5rem">
+                        Add Transaction
+                    </a>
+
+                    <a href="{{ route('categories.index') }}" style="margin-right: 1.5rem">
+                        Add Category
+                    </a>
+
+                    <a href="{{ route('accounts.edit', ['id' => $account->id]) }}">
+                        Edit Account
+                    </a>
+                </div>
+
                 <div class="bg-gray-200 bg-opacity-25 p-6 lg:p-8">
                     <div>
                         <div class="flex items-center mb-4">
