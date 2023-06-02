@@ -29,7 +29,7 @@
             <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                 <p class="font-thin">Total Accounts</p>
                 <h1 class="text-2xl mt-2 font-black">
-                    10
+                    {{ $totalAccounts }}
                 </h1>
             </div>
 

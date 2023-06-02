@@ -39,10 +39,52 @@ class AccountsController extends Controller
         return redirect()->route('accounts.index')->with('success', 'Account created successfully!');
     }
 
+    public function edit($id)
+    {
+        // Find the account based on the provided ID
+        $account = Account::findOrFail($id);
+
+        return view('accounts.edit', compact('account'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the input
+        $request->validate([
+            'account_name' => 'required|max:50',
+        ]);
+
+        // Find the account based on the provided ID
+        $account = Account::findOrFail($id);
+
+        // Update the account name
+        $account->title = $request->input('account_name');
+        $account->save();
+
+        return redirect()->route('accounts.show', $account->id)->with('success', 'Account name updated successfully!');
+    }
+
     public function destroy(Account $account)
     {
         $account->delete();
 
         return redirect()->route('accounts.index')->with('success', 'Account deleted successfully!');
+    }
+
+    public function show($id)
+    {
+        // Find the account based on the provided ID
+        $account = Account::find($id);
+
+        if (!$account) {
+            // Handle case when account is not found
+            abort(404);
+        }
+
+        // Get the account title
+        $accountTitle = $account->title;
+
+        // Pass the account to the view
+        return view('accounts.show', compact('account', 'accountTitle'));
     }
 }

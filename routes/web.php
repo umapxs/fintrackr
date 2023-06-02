@@ -34,10 +34,21 @@ Route::middleware([
      * Banking Accounts
      *
      *  */
+    // Index
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts.index');
 
+    // Create
     Route::post('/accounts/create', [AccountsController::class, 'create'])->name('accounts.create');
 
+    // Show
+    Route::get('/accounts/{id}', [AccountsController::class, 'show'])->name('accounts.show');
+
+    // Edit
+    Route::get('/accounts/{id}/edit', [AccountsController::class, 'edit'])->name('accounts.edit');
+    // Update
+    Route::put('/accounts/{id}', [AccountsController::class, 'update'])->name('accounts.update');
+
+    // Delete
     Route::delete('/accounts/{account}', [AccountsController::class, 'destroy'])->name('accounts.destroy');
 
 });
