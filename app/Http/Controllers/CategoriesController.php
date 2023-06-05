@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Account;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -13,9 +15,7 @@ class CategoriesController extends Controller
      *
      */
     public function index() {
-        $account = auth()->user()->account;
-
-        $categories = $account->categories()->latest()->get();
+        $categories = Categories::latest()->get();
 
         return view('categories.index', compact('categories'));
     }
@@ -25,21 +25,19 @@ class CategoriesController extends Controller
      *
      */
     public function create(Request $request) {
-        $request->validade([
+        $request->validate([
             'category_name' => 'required|string|max:50',
         ]);
 
         // Create a new category instance
         $category = new Categories();
 
-        $category->title = $request->input('title');
+        $category->title = $request->input('category_name');
+        $category->user_id = Auth::id();
 
         $category->save();
 
-        // Retrieve the updated list of categories
-        $categories = Categories::latest()->get();
-
-        return view('categories.index', compact('categories'))->with('success', 'Category created successfully!');
+        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
 
     /**
@@ -53,3 +51,4 @@ class CategoriesController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 }
+

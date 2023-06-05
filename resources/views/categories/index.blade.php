@@ -8,11 +8,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-                    <a href="{{ url()->previous() }}" style="margin-right: 1.5rem; margin-left: 1rem">
-                        Return
-                    </a>
-                </div>
 
                 <div class="bg-gray-200 bg-opacity-25 p-6 lg:p-8">
                     <div>
@@ -23,9 +18,9 @@
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 lg:gap-8">
                             <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
-                                <form method="POST" action="categories.create">
+                                <form method="POST" action="{{ route('categories.create') }}">
                                     @csrf
-                                    @method('PUT')
+                                    @method('POST')
                                         <!-- Input -->
                                         <div class="flex flex-row">
                                             <div class="w-full p-8">

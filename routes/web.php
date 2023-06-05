@@ -61,6 +61,9 @@ Route::middleware([
     // Index
     Route::get('/accounts/{id}/transactions', [TransactionsController::class, 'index'])->name('transactions.index');
 
+    // Create
+    Route::post('/accounts/{id}/transactions/create', [TransactionsController::class, 'create'])->name('transactions.create');
+
     /**
      * Category
      *
@@ -68,6 +71,9 @@ Route::middleware([
 
     // Index
     Route::get('/category', [CategoriesController::class, 'index'])->name('categories.index');
+
+    // Create
+    Route::post('/category/create', [CategoriesController::class, 'create'])->name('categories.create');
 
     // Delete
     Route::delete('/category/{category}', [CategoriesController::class, 'destroy'])->name('categories.destroy');

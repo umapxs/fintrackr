@@ -17,7 +17,7 @@
                         Add Transaction
                     </a>
 
-                    <a href="{{ route('categories.index') }}" style="margin-right: 1.5rem">
+                    <a href="{{ route('categories.index', ['account_id' => $account->id]) }}" style="margin-right: 1.5rem">
                         Add Category
                     </a>
 
