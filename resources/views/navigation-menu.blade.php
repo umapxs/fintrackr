@@ -146,6 +146,10 @@
             <x-responsive-nav-link href="{{ route('dashboard.index') }}" :active="request()->routeIs('dashboard.index')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('accounts.index') }}" :active="request()->routeIs('accounts.index')">
+                {{ __('Banking Accounts') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
