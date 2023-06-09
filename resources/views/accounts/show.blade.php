@@ -36,8 +36,8 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                             <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                                 <p class="font-thin">Account Balance</p>
-                                <h1 class="text-2xl">
-                                    $1,454
+                                <h1 class="text-2xl {{ $account->getTotalAmount() < 0 ? 'text-red-500' : 'text-green-500' }}">
+                                    ${{ $account->getTotalAmount() }}
                                 </h1>
                             </div>
                         </div>
@@ -51,13 +51,24 @@
                                 Transactions
                             </h2>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                            <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
-                                <p class="font-thin">Account Balance</p>
-                                <h1 class="text-2xl">
-                                    $1,454
-                                </h1>
-                            </div>
+                        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 lg:gap-8">
+                            @foreach ($account->transactions->sortByDesc('created_at') as $transaction)
+                                <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+                                    <div>
+                                        <p class="font-thin">{{ $transaction->category->title }}</p>
+
+                                        <div>
+                                            <p class="inline-block text-xs text-gray-500 float-right">{{ $transaction->created_at->format('d/m/Y') }}</p>
+
+                                            <p class="inline-block text-xs text-gray-500">{{ $transaction->created_at->format('H:i') }}</p>
+                                        </div>
+
+                                        <h1 class="mt-2 text-2xl {{ $transaction->transaction_value < 0 ? 'text-red-500' : 'text-green-500' }}">
+                                            {{ $transaction->transaction_value }}
+                                        </h1>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -35,7 +35,7 @@
                             <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                                 <p class="font-thin">Overall Balance</p>
                                 <h1 class="text-2xl">
-                                    $1,454
+                                   {{ \App\Models\Account::overallTotal() }}
                                 </h1>
                             </div>
                         </div>
