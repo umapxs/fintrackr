@@ -15,7 +15,8 @@ class CategoriesController extends Controller
      *
      */
     public function index() {
-        $categories = Categories::latest()->get();
+        $userId = Auth::id();
+        $categories = Categories::where('user_id', $userId)->latest()->get();
 
         return view('categories.index', compact('categories'));
     }
