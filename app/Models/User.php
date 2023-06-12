@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->hasMany(Account::class);
     }
 
+    public function categories()
+    {
+        return $this->hasMany(Categories::class, 'user_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
