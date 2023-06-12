@@ -34,7 +34,7 @@
 
                             <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                                 <p class="font-thin">Overall Balance</p>
-                                <h1 class="text-2xl">
+                                <h1 class="text-2xl {{ \App\Models\Account::overallTotal() < 0 ? 'text-red-500' : 'text-green-500' }}">
                                    ${{ \App\Models\Account::overallTotal() }}
                                 </h1>
                             </div>
@@ -43,12 +43,18 @@
                         <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md mt-8">
                             <p class="font-thin">Analytics</p>
                             <h1 class="text-2xl">
-                                Placeholder (Pie Chart)
+                                Placeholder for the Pie Chart
+                                {{-- {{ $chart->options['chart_title'] }} --}}
                             </h1>
+                            {{-- {!! $chart->renderHtml() !!} --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {{-- @section('javascript')
+        {!! $chart->renderChartJsLibrary() !!}
+        {!! $chart->renderJs() !!}
+    @endsection --}}
 </x-app-layout>
