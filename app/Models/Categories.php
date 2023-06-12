@@ -15,7 +15,7 @@ class Categories extends Model
      */
     public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transactions::class, 'category_id');
     }
 
     public function user()
@@ -31,4 +31,11 @@ class Categories extends Model
     protected $fillable = [
         'title',
     ];
+
+
+    public function getTotalTransactionAmount()
+    {
+        return $this->transactions()->sum('transaction_value');
+    }
+
 }
