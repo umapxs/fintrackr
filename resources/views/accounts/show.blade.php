@@ -18,7 +18,7 @@
                     </a>
 
                     <a href="{{ route('categories.index', ['account_id' => $account->id]) }}" style="margin-right: 1.5rem">
-                        Add Category
+                        Category
                     </a>
 
                     <a href="{{ route('accounts.edit', ['id' => $account->id]) }}">
@@ -42,6 +42,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="mt-16">
+                        <div class="flex items-center mb-4">
+                            <h2 class="ml-3 text-xl font-semibold text-gray-900">
+                                Total by Category
+                            </h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        @foreach ($categories as $category)
+                            <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+                                <p class="font-thin">{{ $category->title }}</p>
+                                <h1 class="text-2xl {{ $category->getTotalTransactionAmount() < 0 ? 'text-red-500' : 'text-green-500' }}">
+                                    ${{$category->getTotalTransactionAmount()}}
+                                </h1>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
 
                 <div class="bg-gray-200 bg-opacity-25 p-6 lg:p-8">
@@ -63,7 +82,7 @@
                                             <p class="inline-block text-xs text-gray-500">{{ $transaction->created_at->format('H:i') }}</p>
                                         </div>
 
-                                        <h1 class="mt-2 text-2xl {{ $transaction->transaction_value < 0 ? 'text-red-500' : 'text-green-500' }}">
+                                        <h1 class="mt-2 text-2xl {{ $transaction->transaction_value < 0 ? 'text-red-500' : 'text-green-500' }}">$
                                             {{ $transaction->transaction_value }}
                                         </h1>
                                     </div>

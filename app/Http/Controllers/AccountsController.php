@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use Illuminate\Http\Request;
+use App\Models\Categories;
 
 class AccountsController extends Controller
 {
@@ -108,7 +109,12 @@ class AccountsController extends Controller
         // Get the account title
         $accountTitle = $account->title;
 
+        // Get the current user
+        $user = auth()->user();
+
+        $categories = Categories::where('user_id', $user->id)->latest()->get();
+
         // Pass the account to the view
-        return view('accounts.show', compact('account', 'accountTitle'));
+        return view('accounts.show', compact('account', 'accountTitle', 'categories'));
     }
 }
