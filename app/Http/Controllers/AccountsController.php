@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Categories;
 
 class AccountsController extends Controller
@@ -83,13 +85,29 @@ class AccountsController extends Controller
 
     /**
      * Destroy
-     *
      */
     public function destroy(Account $account)
     {
-        $account->delete();
+        // Get the current authenticated user
+        $user = Auth::user();
 
-        return redirect()->route('accounts.index')->with('success', 'Account deleted successfully!');
+        // Validate the password input
+        request()->validate([
+            'password' => ['required', function ($attribute, $value, $fail) use ($user) {
+                if (!Hash::check($value, $user->password)) {
+                    $fail('Incorrect password');
+                }
+            }],
+        ]);
+
+        // If the password is correct, delete the account
+        if (Hash::check(request('password'), $user->password)) {
+            $account->delete();
+            return redirect()->route('accounts.index')->with('success', 'Account deleted successfully!');
+        }
+
+        // If the password is incorrect, redirect back with an error message
+        return redirect()->back()->with('error', 'Incorrect password. Account not deleted.');
     }
 
     /**

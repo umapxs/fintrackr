@@ -54,17 +54,20 @@
                                             <a href="{{ route('accounts.show', ['id' => $account->id]) }}">
                                                 <p class="font-thin">{{ $account->title }}</p>
                                             </a>
-                                            <form action="{{ route('accounts.destroy', $account->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                                            <form action="{{ route('accounts.destroy', $account->id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="text-red-600 mt-2 delete-button">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                    </svg>
-                                                </button>
-                                                <div class="password-input hidden">
-                                                    <input type="password" name="password" placeholder="Enter password" class="p-2 border border-gray-300 mt-2" />
-                                                    <button type="submit" class="px-3 py-2 bg-red-600 text-white mt-2">Confirm</button>
+                                                <div class="relative inline-flex items-center">
+                                                    <button type="button" class="text-red-600 mt-2 delete-button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                    </button>
+                                                    <div class="top-0 right-0 hidden password-input ml-4">
+                                                        <input type="password" required name="password" placeholder="Enter password" class="p-2 border border-gray-300 mt-2" />
+                                                        <button type="submit" class="px-3 py-2 bg-red-600 text-white mt-2">Confirm</button>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
